@@ -1,0 +1,37 @@
+<!-- 
+<p>
+  {{player.name}}
+</p>                -->
+
+<!-- 
+<div 
+class="player">
+ <span class="keycode">{{ player.keyCode}}</span>
+ <span class="name">{{ player.name }}</span>
+</div>          -->
+
+<!-- 
+<div class="players">
+  <div class="player" *ngFor="let player of players">
+    <!-- <span class="keycode">{{ player.keyCode}}</span>   
+	<span class="keycode" [style.backgroundColor]="player.color" >{{ player.keyCode}}</span>
+    <span class="name">{{ player.name }}</span>
+  </div>
+﻿</div>
+                       -->
+<div class="new_player" *ngIf=" firstScreen === true">
+  <p style="margin-left: 10px">
+  <input #newPlayerName placeholder="New Player" />
+  <button (click)="this.playerservice.addPlayer(newPlayerName.value); 
+                   newPlayerName.value='' "> + </button></p>
+</div>
+<div class="players" [class.playing]="firstScreen === 'playarea'" >				   
+  <div class="player" *ngFor="let player of playerservice.players" [style.animationDuration]="player.duration">
+    <span class="keycode" [style.backgroundColor]="player.color" >{{ player.keyCode}}</span>
+    <span class="name">{{ player.name }}</span>
+	<span class="score" *ngIf="firstScreen !== true">{{ player.score }}</span>
+  </div>
+</div>
+<a class="start_game" href='/play' *ngIf=" firstScreen === true "> Start the Game </a>
+
+
